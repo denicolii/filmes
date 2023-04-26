@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CineStream</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>CineStream</h1>
+		<nav>
+			<ul>
+				<li><a href="index.html">Início</a></li>
+				<li><a href="filmes.html">Filmes</a></li>
+				<li><a href="series.html">Séries</a></li>
+				<li><a href="sobre.html">Sobre Nós</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section>
+			<div class="sobre">
+				<p>
+					Possui alguma dúvida, sugestão ou reclamação?
+					<br>
+					Preencha esse formulário e nos envie, você receberá uma resposta por dentro de sete disa úteis!
+					<br>
+					
+	
+				</p>
+			</div>
+		</section>
+
+		<div class="content">
+			<h1>Fale Conosco</h1>
+			<form id="form">
+				<div>
+					<input type="text" placeholder="Digite seu nome" class="inputs required" oninput="nameValidate()">
+					<span class="span-required">Nome deve ter no mínimo 3 caracteres</span>
+				</div>
+				<div>
+					<input type="email" placeholder="Digite seu melhor email" class="inputs required" oninput="emailValidate()">
+					<span class="span-required">Digite um email válido</span>
+				</div>
+				<textarea class="inputs" name="descricao" id="descricao" cols="25" rows="10" placeholder="Digite aqui..."></textarea>
+				<p>Sexo:</p>
+				<div class="box-select">
+					<div>
+						<input type="radio" id="m" value="m" name="sexo">
+						<label for="m">Masculino</label>
+					</div>
+					<div>
+						<input type="radio" id="f" value="f" name="sexo">
+						<label for="f">Feminino</label>
+					</div>
+					<div>
+						<input type="radio" id="o" value="o" name="sexo">
+						<label for="o">Outro</label>
+					</div>
+				</div>
+				
+				<button type="submit">Enviar</button>
+			</form>
+		</div>
+	</body>
+	<script>
+		const form   = document.getElementById('form');
+		const campos = document.querySelectorAll('.required');
+		const spans  = document.querySelectorAll('.span-required');
+		const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+	
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			nameValidate();
+			emailValidate();
+			mainPasswordValidate();
+			comparePassword();
+		});
+	
+		function setError(index){
+			campos[index].style.border = '2px solid #e63636';
+			spans[index].style.display = 'block';
+		}
+	
+		function removeError(index){
+			campos[index].style.border = '';
+			spans[index].style.display = 'none';
+		}
+	
+		function nameValidate(){
+			if(campos[0].value.length < 3)
+			{
+				setError(0);
+			}
+			else
+			{
+				removeError(0);
+			}
+		}
+	
+		function emailValidate(){
+			if(!emailRegex.test(campos[1].value))
+			{
+				setError(1);
+			}
+			else
+			{
+				removeError(1);
+			}
+		}
+	
+		function mainPasswordValidate(){
+			if(campos[2].value.length < 8)
+			{
+				setError(2);
+			}
+			else
+			{
+				removeError(2);
+				comparePassword();
+			}
+		}
+	
+		function comparePassword(){
+			if(campos[2].value == campos[3].value && campos[3].value.length >= 8)
+			{
+				removeError(3);
+			}
+			else
+			{
+				setError(3);
+			}
+		}
+	
+	</script>
+	</html>
+	</main>
+	<footer>
+		<p>denicoli &copy;2023</p>
+	</footer>
+</body>
+</html>
