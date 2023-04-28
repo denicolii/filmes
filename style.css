@@ -159,6 +159,10 @@ section {
 		margin-right: 2px;
 	}
 
+	nav ul li a{
+		font-size: 18px;
+	}
+
 	.sobre{
 		padding: 10px;
 		margin-right: 50px;
@@ -251,3 +255,14 @@ button[type="submit"]:hover{
 
 
 }
+
+@media (min-width: 800px) and (max-width: 1024px) {
+	.movie-list {
+	  width: 800px; /* largura da div */
+	  margin-left: 100px; /* margin com valor auto para left e right */
+	}
+
+	nav ul li a{
+		font-size: 22px;
+	}
+  }
