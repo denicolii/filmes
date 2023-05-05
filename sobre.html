@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CineStream</title>
+	<title>CineStream</title> <!--Titulo da página -->
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<header>
-		<h1>CineStream</h1>
+		<h1>CineStream</h1> <!-- Nome do site -->
 		<nav>
-			<ul>
+			<ul> <!-- navegação da página-->
 				<li><a href="index.html">Início</a></li>
 				<li><a href="filmes.html">Filmes</a></li>
 				<li><a href="series.html">Séries</a></li>
@@ -18,7 +18,7 @@
 	</header>
 	<main>
 		<section>
-			<div class="sobre">
+			<div class="sobre"> <!-- div com pequenos textos-->
 				<p>
 					Possui alguma dúvida, sugestão ou reclamação?
 					<br>
@@ -30,8 +30,8 @@
 			</div>
 		</section>
 
-		<div class="content">
-			<h1>Fale Conosco</h1>
+		<div class="content"> <!-- div com um formulário-->
+			<h1>Fale Conosco</h1> 
 			<form id="form">
 				<div>
 					<input type="text" placeholder="Digite seu nome" class="inputs required" oninput="nameValidate()">
@@ -62,75 +62,64 @@
 			</form>
 		</div>
 	</body>
-	<script>
-		const form   = document.getElementById('form');
-		const campos = document.querySelectorAll('.required');
-		const spans  = document.querySelectorAll('.span-required');
-		const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+	<script> 
+		const form   = document.getElementById('form'); // Seleciona o formulário
+		const campos = document.querySelectorAll('.required'); // Seleciona os campos obrigatórios do formulário
+		const spans  = document.querySelectorAll('.span-required'); // Seleciona as mensagens de erro do formulário
+		const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/; // Expressão regular para validar o formato do email
 	
+		// Adicionando um evento de envio de formulário
+
 		form.addEventListener('submit', (event) => {
-			event.preventDefault();
-			nameValidate();
-			emailValidate();
-			mainPasswordValidate();
-			comparePassword();
+			event.preventDefault(); // Previne que o formulário seja enviado
+			nameValidate(); // Valida o campo de nome
+			emailValidate(); //Valida o campo de email
+	
 		});
 	
+		// Define uma função para exibir uma mensagem de erro em um campo
+
 		function setError(index){
-			campos[index].style.border = '2px solid #e63636';
-			spans[index].style.display = 'block';
+			campos[index].style.border = '2px solid #e63636'; // Adiciona uma borda vermelha no campo
+			spans[index].style.display = 'block'; // Exibe a mensagem de erro correspondente
 		}
-	
+		
+
+		// Define uma função para remover a mensagem de erro de um campo
+
 		function removeError(index){
-			campos[index].style.border = '';
-			spans[index].style.display = 'none';
+			campos[index].style.border = ''; // Remove a borda do campo
+			spans[index].style.display = 'none'; // Esconde a mensagem de erro correspondente
 		}
 	
+
+		// Valida o campo de nome
+
 		function nameValidate(){
 			if(campos[0].value.length < 3)
 			{
-				setError(0);
+				setError(0); // Exibe a mensagem de erro se o nome tem menos de 3 caracteres
 			}
 			else
 			{
-				removeError(0);
+				removeError(0); // Remove a mensagem de erro se o nome tem pelo menos 3 caracteres
 			}
 		}
 	
+
+		// Valida o campo de email
+
 		function emailValidate(){
 			if(!emailRegex.test(campos[1].value))
 			{
-				setError(1);
+				setError(1); // Exibe a mensagem de erro se o email não está no formato correto
 			}
 			else
 			{
-				removeError(1);
+				removeError(1); // Remove a mensagem de erro se o email está no formato correto
 			}
 		}
-	
-		function mainPasswordValidate(){
-			if(campos[2].value.length < 8)
-			{
-				setError(2);
-			}
-			else
-			{
-				removeError(2);
-				comparePassword();
-			}
-		}
-	
-		function comparePassword(){
-			if(campos[2].value == campos[3].value && campos[3].value.length >= 8)
-			{
-				removeError(3);
-			}
-			else
-			{
-				setError(3);
-			}
-		}
-	
+		
 	</script>
 	</html>
 	</main>
